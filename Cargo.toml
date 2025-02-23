@@ -1,0 +1,63 @@
+[package]
+edition = "2021"
+name    = "wifi-visualizer"
+version = "0.1.0"
+
+[[bin]]
+name = "wifi-visualizer"
+path = "./src/bin/main.rs"
+
+[dependencies]
+critical-section = "1.2.0"
+embedded-io = "0.6.1"
+esp-alloc = { version = "0.6.0" }
+esp-backtrace = { version = "0.15.0", features = [
+  "esp32",
+  "exception-handler",
+  "panic-handler",
+  "println",
+] }
+esp-hal = { version = "0.23.1", features = ["esp32", "unstable"] }
+esp-println = { version = "0.13.0", features = ["esp32", "log"] }
+esp-wifi = { version = "0.12.0", default-features = false, features = [
+  "esp-alloc",
+  "esp32",
+  "log",
+  "utils",
+  "wifi",
+  "sniffer"
+] }
+fugit = "0.3.7"
+heapless = { version = "0.8.0", default-features = false }
+ieee80211 = "0.5.3"
+log = { version = "0.4.21" }
+rand_core = "0.9.1"
+rand_xorshift = "0.4.0"
+smart-leds = "0.4.0"
+smart-leds-trait = "0.3.1"
+smoltcp = { version = "0.12.0", default-features = false, features = [
+  "medium-ethernet",
+  "multicast",
+  "proto-dhcpv4",
+  "proto-dns",
+  "proto-ipv4",
+  "socket-dns",
+  "socket-icmp",
+  "socket-raw",
+  "socket-tcp",
+  "socket-udp",
+] }
+
+[profile.dev]
+# Rust debug is too slow.
+# For debug builds always builds with some optimization
+opt-level = "s"
+
+[profile.release]
+codegen-units    = 1     # LLVM can perform better optimizations using a single thread
+debug            = 2
+debug-assertions = false
+incremental      = false
+lto              = 'fat'
+opt-level        = 's'
+overflow-checks  = false
