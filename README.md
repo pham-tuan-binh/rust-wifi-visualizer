@@ -59,7 +59,9 @@ const LED_COUNT: usize = ROW_SIZE * COL_SIZE;
 
 # Credits
 
-Special thanks to Mark Kriegsman for the [Fire2012 visualization](https://blog.kriegsman.org/2014/04/04/fire2012-an-open-source-fire-simulation-for-arduino-and-leds/), which inspired parts of this project.
+Special thanks to:
+- Mark Kriegsman for the [Fire2012 visualization](https://blog.kriegsman.org/2014/04/04/fire2012-an-open-source-fire-simulation-for-arduino-and-leds/), which inspired parts of this project.
+- Sergio Gasquez (https://github.com/SergioGasquez) for fixing the installation instructions and solving my confusion with esp-hal 🙌🙌🙌
 
 # License
 
