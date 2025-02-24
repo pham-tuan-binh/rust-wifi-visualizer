@@ -26,28 +26,24 @@ P/S: Technically, I'm a 2 days old Rust developer at the time of this repo publi
    ```
 2. **Install ESP32 Rust Toolchain**
    ```sh
-   rustup target add xtensa-esp32-none-elf
-   cargo install espflash ldproxy
+   cargo install espflash espup
+   espup install
+   # In Unix systems, source the export file
+   . $HOME/export-esp.sh
    ```
 3. **Build and Flash the Firmware**
    ```sh
-   cargo build --release
-   cargo run
+   cargo run --release
    ```
 
 # Changing the Target for Different ESP32 Variants
 
-To target a different ESP32 chip, modify the `target` argument accordingly:
+To target a different ESP32 chip, modify the `target` field in the `.cargo/config.toml` file accordingly:
+
+Then, build and flash:
 
 ```sh
-rustup target add xtensa-esp32s3-none-elf
-```
-
-Then, build and flash using the new target:
-
-```sh
-cargo build --release --target xtensa-esp32s3-none-elf
-cargo run --target xtensa-esp32s3-none-elf
+cargo run --release
 ```
 
 # Modifying LED Matrix Dimensions
